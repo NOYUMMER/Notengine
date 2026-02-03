@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Phaser Circle Test</title>
+    <title>Phaser Test Circle</title>
     <script src="phaser.js"></script>
     <style>
         body {
@@ -17,17 +16,42 @@
             flex-direction: column;
         }
         canvas {
-            display: block;
             margin-top: 20px;
+            border: 2px solid white;
         }
     </style>
 </head>
 <body>
-    <h1>Phaser Circle Test</h1>
+    <h1>Phaser Test Circle</h1>
+    <p id="status">Проверяем Phaser...</p>
 
     <script>
-        const config = {
-            type: Phaser.AUTO,
-            width: 400,
-            height: 300,
-            backgroundColor: '#2d
+        // Проверка, что Phaser загружен
+        const statusEl = document.getElementById('status');
+        if (typeof Phaser !== 'undefined') {
+            statusEl.textContent = 'Phaser загружен! Рисуем круг...';
+
+            // Настройки игры
+            const config = {
+                type: Phaser.AUTO,
+                width: 400,
+                height: 300,
+                backgroundColor: '#2d2d2d',
+                scene: {
+                    create: create
+                }
+            };
+
+            const game = new Phaser.Game(config);
+
+            function create() {
+                const graphics = this.add.graphics();
+                graphics.fillStyle(0x00ff00, 1); // зеленый цвет
+                graphics.fillCircle(config.width/2, config.height/2, 50); // круг в центре
+            }
+        } else {
+            statusEl.textContent = 'Phaser не загружен! Проверьте phaser.js';
+        }
+    </script>
+</body>
+</html>
