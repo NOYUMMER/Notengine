@@ -1,57 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Phaser Test Circle</title>
     <script src="https://cdn.jsdelivr.net"></script>
-
-    <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #2d2d2d;
-            color: white;
-            flex-direction: column;
-        }
-        canvas {
-            margin-top: 20px;
-            border: 2px solid white;
-        }
-    </style>
 </head>
 <body>
-    <h1>Phaser Test Circle</h1>
-    <p id="status">Проверяем Phaser...</p>
-
     <script>
-        // Проверка, что Phaser загружен
-        const statusEl = document.getElementById('status');
-        if (typeof Phaser !== 'undefined') {
-            statusEl.textContent = 'Phaser загружен! Рисуем круг...';
-
-            // Настройки игры
-            const config = {
-                type: Phaser.AUTO,
-                width: 400,
-                height: 300,
-                backgroundColor: '#2d2d2d',
-                scene: {
-                    create: create
-                }
-            };
-
-            const game = new Phaser.Game(config);
-
-            function create() {
-                const graphics = this.add.graphics();
-                graphics.fillStyle(0x00ff00, 1); // зеленый цвет
-                graphics.fillCircle(config.width/2, config.height/2, 50); // круг в центре
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            scene: {
+                create: create
             }
-        } else {
-            statusEl.textContent = 'Phaser не загружен! Проверьте phaser.js';
+        };
+
+        const game = new Phaser.Game(config);
+
+        function create() {
+            // Рисуем круг: x, y, радиус
+            const graphics = this.add.graphics();
+            graphics.fillStyle(0xff0000, 1); // Цвет (красный) и прозрачность
+            graphics.fillCircle(400, 300, 50); // Координаты центра и радиус
         }
     </script>
 </body>
